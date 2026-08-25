@@ -1,27 +1,31 @@
-const todoList = [];
-//renderToDoList();
+ const todo = [];
+let todoDisplay = '';
+renderTodolist();
 
-function renderToDoList() {
-    let todolistHTML = '';
-    for (let i = 0; i < todoList.length; i++) {
-        const todo = todoList[i];
-        const html = `<p>${todo}</p>`;
-        todolistHTML = todolistHTML + html;
-    }
-    //console.log(todolistHTML);
-    document.querySelector('.js-display-input')
-        .innerHTML = todolistHTML;
-};
+ function renderTodolist () {
+    todoDisplay ='';
 
-function addtodo() {
-    const inputElement = document.querySelector('.js-name-input')
-    let name = inputElement.value;
-    // console.log(name)
-    todoList.push(name);
-    // console.log(name);
+for (let index = 0; index < todo.length; index++) {
+    let totalvalue = todo[index];
+    let display = `<p>${totalvalue}</p>`;
+// console.log(display)
+    todoDisplay = todoDisplay + display;
 
+    console.log(todoDisplay);
 
-    //make input blank
+}
+document.querySelector('.js-to-do-list').innerHTML= todoDisplay;
+
+ }
+
+function addToDo() {
+    const inputElement = document.querySelector('.js-input-element');
+    const name = inputElement.value;
+    //   console.log(name)
+
+    todo.push(name);
+    // console.log(todo);
+
     inputElement.value = '';
-    renderToDoList();
-};
+     renderTodolist();
+}; 
