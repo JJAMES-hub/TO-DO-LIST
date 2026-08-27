@@ -6,26 +6,41 @@ function renderTodolist() {
     todoDisplay = '';
 
     for (let index = 0; index < todo.length; index++) {
-        let totalvalue = todo[index];
-        let display = `<p>${totalvalue}<button onclick ="todo.splice(${index}, 1); renderTodolist()">Delete</button></p>`;
-        // console.log(display)
+        let totalvalueObject = todo[index];
+        const list = totalvalueObject.list;
+        const dueDate = totalvalueObject.dueDate;
+
+        let display = `<p>${list} ${dueDate}
+        <button onclick="todo.splice(${index}, 1); 
+        renderTodolist();">
+        Delete</button>
+        </p>`;
         todoDisplay = todoDisplay + display;
-
         console.log(display);
-
     }
     document.querySelector('.js-to-do-list').innerHTML = todoDisplay;
-
 }
 
 function addToDo() {
     const inputElement = document.querySelector('.js-input-element');
-    const name = inputElement.value;
-    //   console.log(name)
+    const dateInput = document.querySelector('.js-due-date');
 
-    todo.push(name);
-    // console.log(todo);
+    const name = inputElement.value.trim();  // Added .trim()
+    const dueDate = dateInput.value;
+
+    // Check if name is empty
+    if (name === '') {
+        alert('Please enter a todo item');
+        return;
+    }
+
+  
+    todo.push({
+        list: name,
+        dueDate: dueDate  
+    });
 
     inputElement.value = '';
+    dateInput.value = '';  // Clear date input too
     renderTodolist();
-}; 
+}
