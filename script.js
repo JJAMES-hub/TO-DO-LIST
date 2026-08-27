@@ -1,22 +1,22 @@
- const todo = [];
+const todo = [];
 let todoDisplay = '';
 renderTodolist();
 
- function renderTodolist () {
-    todoDisplay ='';
+function renderTodolist() {
+    todoDisplay = '';
 
-for (let index = 0; index < todo.length; index++) {
-    let totalvalue = todo[index];
-    let display = `<p>${totalvalue}</p>`;
-// console.log(display)
-    todoDisplay = todoDisplay + display;
+    for (let index = 0; index < todo.length; index++) {
+        let totalvalue = todo[index];
+        let display = `<p>${totalvalue}<button onclick ="todo.splice(${index}, 1); renderTodolist()">Delete</button></p>`;
+        // console.log(display)
+        todoDisplay = todoDisplay + display;
 
-    console.log(todoDisplay);
+        console.log(display);
+
+    }
+    document.querySelector('.js-to-do-list').innerHTML = todoDisplay;
 
 }
-document.querySelector('.js-to-do-list').innerHTML= todoDisplay;
-
- }
 
 function addToDo() {
     const inputElement = document.querySelector('.js-input-element');
@@ -27,5 +27,5 @@ function addToDo() {
     // console.log(todo);
 
     inputElement.value = '';
-     renderTodolist();
+    renderTodolist();
 }; 
